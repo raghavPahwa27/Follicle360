@@ -1,0 +1,1 @@
+Edited using built-in image generation. Prompt: Remove only bright blue navigation arrows; reconstruct covered regions using adjacent hair/background; preserve framing, hair density, scalp visibility and lighting. These remain illustrative demo images, not clinical evidence.
