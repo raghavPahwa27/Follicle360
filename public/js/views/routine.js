@@ -22,7 +22,7 @@ const quickAdd = (s) => `<div class="chips quick-add">${PRODUCTS.filter((p) => !
 
 function todayTab(s) {
   const steps = s.routine.steps;
-  if (!steps.length) return `<section class="card empty-state"><h2>Build your routine</h2>
+  if (!steps.length) return `<section class="card empty-state routine-today"><h2>Build your routine</h2>
     <p>Add the products you use, or create your own steps with your own times. Nothing else needs to be set up first.</p>
     <h3>Add a product</h3>${quickAdd(s)}
     <div class="row"><a class="btn primary" href="#routine/plan">${icon('plus', 18)} Create a custom step</a></div></section>`;
@@ -33,7 +33,7 @@ function todayTab(s) {
   const heat = S.lastN(s, 28).map((d) => `<button class="cell ${d.pct === null ? 'none' : d.pct >= 0.7 ? 'hi' : d.pct > 0 ? 'mid' : 'lo'} ${d.key === key ? 'sel' : ''}" data-act="day" data-d="${d.key}" ${d.key < start ? 'disabled' : ''}
     title="${niceDate(d.key)}${d.pct === null ? '' : `: ${Math.round(d.pct * 100)}%`}" aria-label="${niceDate(d.key)}"><span>${new Date(`${d.key}T00:00:00`).getDate()}</span></button>`).join('');
 
-  return `<div class="grid">
+  return `<div class="grid routine-today">
     <section class="card summary"><div><span class="badge">Week ${S.weekOf(s)} of your routine</span><h2>Day ${S.daysIn(s)}</h2>
       <p>Started ${longDate(start)}. Missing a day is fine. Consistency over weeks matters more than one perfect day.</p>
       <div class="streak">${icon('flame', 18)} <b>${S.streak(s)}</b> day streak</div></div>${ring(S.consistency(s))}</section>

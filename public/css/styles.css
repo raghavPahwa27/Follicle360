@@ -45,6 +45,9 @@ button, input, select, textarea { font: inherit; color: inherit; } button { curs
 .card p + .btn, .card p + .row { margin-top: 12px; }
 .stack { display: grid; gap: 18px; max-width: 780px; margin: 0 auto; }
 .grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 18px; }
+.routine-today { max-width: 780px; margin: 0 auto; }
+.grid.routine-today { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); }
+.routine-today > *, .routine-today .side > * { min-width: 0; }
 .grid .summary, .grid .insight { grid-column: 1 / -1; } .grid .tasks { grid-column: 1; } .grid .side { grid-column: 2; display: grid; gap: 18px; align-content: start; }
 .row { display: flex; flex-wrap: wrap; gap: 10px; }
 .rise { animation: rise .5s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--i, 0) * 70ms); }
@@ -53,7 +56,6 @@ button, input, select, textarea { font: inherit; color: inherit; } button { curs
 .mhead { max-width: 780px; margin: 0 auto 22px; }
 .mhead .back { display: inline-flex; align-items: center; gap: 6px; font-size: .9rem; font-weight: 500; text-decoration: none; margin-bottom: 14px; }
 .mhead .badge { display: table; margin-bottom: 10px; } .mhead p { margin-top: 8px; font-size: 1.05rem; max-width: 620px; }
-.page:has(> .grid) > .mhead, .page:has(> .grid) > .tabs { max-width: none; }
 .foot { max-width: 1120px; margin: 0 auto; padding: 0 20px 40px; text-align: center; font-size: .82rem; } .foot p { margin-bottom: 6px; }
 
 /* ---------- Hub ---------- */
@@ -170,7 +172,7 @@ textarea { resize: vertical; margin-bottom: 12px; line-height: 1.5; }
 @media (max-width: 960px) { .steps a span { display: none; } .steps a { padding: 6px; } .tools { grid-template-columns: 1fr 1fr; } .tools .tool, .tools .tool:nth-child(n) { grid-column: auto; } }
 @media (max-width: 760px) {
   .hero { grid-template-columns: 1fr; padding: 28px 22px; } .orbit { display: none; }
-  .grid, .calc-grid { grid-template-columns: 1fr; } .grid .tasks, .grid .side { grid-column: 1; }
+  .grid, .grid.routine-today, .calc-grid { grid-template-columns: 1fr; } .grid .tasks, .grid .side { grid-column: 1; }
   .summary { flex-direction: column-reverse; text-align: center; } .summary .streak { margin-inline: auto; }
   .hide-sm { display: none; } .bar { gap: 10px; } .steps { margin: 0 auto; }
 }
@@ -227,9 +229,12 @@ textarea { resize: vertical; margin-bottom: 12px; line-height: 1.5; }
 .ind-label { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
 .ind-label b { font-size: .95rem; color: var(--ink); }
 .ind-val { font-size: 1.3rem; font-weight: 800; font-family: Manrope, Inter, sans-serif; color: var(--blue); min-width: 24px; text-align: right; }
-.slider-track { width: 100%; -webkit-appearance: none; appearance: none; height: 8px; border-radius: 999px; background: linear-gradient(to right, var(--blue) 0%, var(--blue) calc((var(--val,3)-1)/4*100%), #dde6f1 calc((var(--val,3)-1)/4*100%)); outline: none; cursor: pointer; margin-bottom: 2px; }
-.slider-track::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--blue); border: 3px solid #fff; box-shadow: 0 2px 6px rgba(38,82,137,.3); cursor: grab; }
-.slider-track::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--blue); border: 3px solid #fff; cursor: grab; }
+.slider-track { --fill: calc((var(--val, 3) - 1) * 25%); display: block; width: 100%; -webkit-appearance: none; appearance: none; height: 32px; padding: 0; border: 0; background: transparent; cursor: pointer; margin: 4px 0 0; }
+.slider-track::-webkit-slider-runnable-track { height: 8px; border-radius: 999px; background: #c5d0de; background: linear-gradient(to right, var(--blue) 0% var(--fill), #c5d0de var(--fill) 100%); }
+.slider-track::-moz-range-track { height: 8px; border-radius: 999px; background: #c5d0de; }
+.slider-track::-moz-range-progress { height: 8px; border-radius: 999px; background: var(--blue); }
+.slider-track::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; margin-top: -7px; border-radius: 50%; background: var(--blue); border: 3px solid #fff; box-shadow: 0 2px 6px rgba(38,82,137,.3); cursor: grab; }
+.slider-track::-moz-range-thumb { box-sizing: border-box; width: 22px; height: 22px; border-radius: 50%; background: var(--blue); border: 3px solid #fff; box-shadow: 0 2px 6px rgba(38,82,137,.3); cursor: grab; }
 .slider-track:focus-visible { outline: 3px solid rgba(38,82,137,.35); outline-offset: 4px; }
 
 @media (max-width: 760px) { .coach-panel { max-height: 70vh; } }
