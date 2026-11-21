@@ -83,7 +83,7 @@ function quizTab(s) {
   const r = savedResult(s.finder);
   if (!r || ui.quiz) {
     const a = r?.answers || {};
-    return `<form id="quiz" class="card stack-form">${QUESTIONS.map((q) => question(q, a[q[0]])).join('')}
+    return `<form id="quiz" class="card stack-form stack-narrow">${QUESTIONS.map((q) => question(q, a[q[0]])).join('')}
       <fieldset class="additional-info">
         <legend>Additional information <span class="optional-label">(optional)</span></legend>
         <p class="muted">Describe any other concerns, existing treatments, previous product experiences, allergies or preferences. This helps tailor the guidance to your situation.</p>
